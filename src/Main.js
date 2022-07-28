@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
+//#region styled-components-css
 const PizzaFrame = styled.div`
   border: solid 1px gray;
   padding: 10px;
@@ -29,7 +30,9 @@ const Save = styled.button`
   padding: 10px;
   border-radius: 5px;
 `;
+//#endregion
 
+//#region pizzas
 let pizzas = [
   {
     id: 1,
@@ -42,6 +45,7 @@ let pizzas = [
     description: "lots of tuna",
   },
 ];
+//#endregion
 
 const Pizza = ({ pizza }) => {
   const [data, setData] = useState(pizza);
@@ -84,6 +88,9 @@ const Pizza = ({ pizza }) => {
 
 const Main = () => {
   const data = pizzas.map((pizza) => <Pizza pizza={pizza} />);
+  fetch("http://localhost:3000/pizzas")
+    .then((response) => response.json())
+    .then((data) => console.log(data)); // outputs mocked data
   return <React.Fragment>{data}</React.Fragment>;
 };
 
